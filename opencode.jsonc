@@ -1,0 +1,14 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["docs/**/AGENTS.md"],
+  "references": {
+    "embedpdf-docs": {
+      "path": "node_modules/@embedpdf/core",
+      "description": "EmbedPDF v2.15.0 source types and plugin APIs"
+    },
+    "tauri-references": {
+      "path": ".agents/skills/tauri-v2/references",
+      "description": "Tauri v2 capability, IPC, and plugin reference docs"
+    }
+  }
+}
