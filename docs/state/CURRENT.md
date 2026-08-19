@@ -2,7 +2,7 @@
 
 This file tracks the current project state. For planned work, see `PLAN.md`.
 
-## Phase: P0.5 Complete
+## Phase: P1 Complete
 
 ### Completed
 
@@ -20,11 +20,27 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 - 3 agents: reviewer, tester, committer
 - `docs/` with 5 subdirectories (rules, tools, state, architecture, workflow)
 
+#### P1 — Core Viewer ✅
+- `@embedpdf/plugin-interaction-manager@2.15.0` installed
+- Biome formatter configured (`biome check` + `biome format`)
+- `src/engine/use-engine.ts` — PdfiumEngine wrapper with local WASM
+- `src/config/plugins.registry.ts` — 7 plugins: document-manager → viewport → scroll → render → tiling → interaction-manager → zoom
+- `src/services/file-service.ts` — `openFile()` via Tauri dialog + fs
+- `src/stores/app-store.ts` — Zustand store (view, buffer, name, path)
+- `src/App.tsx` — view switcher (home ↔ viewer)
+- `src/views/home/HomeView.tsx` — "Open a PDF" button + empty state
+- `src/views/viewer/ViewerView.tsx` — EmbedPDF provider + full viewer layout
+- `src/components/toolbar/FileBar.tsx` — doc name + back button
+- `src/components/toolbar/ZoomControls.tsx` — zoom in/out/reset/fit-width
+- `src/components/toolbar/PageNav.tsx` — page prev/next + "X of Y"
+- `@/` path alias configured (tsconfig + vite)
+- `bun run build` ✅ · `bun run format:check` ✅ · `cargo check` ✅
+
 ### Plugin Inventory (23 at v2.15.0)
 
 | Phase | Plugins |
 |---|---|
-| P1 | document-manager, viewport, scroll, render, tiling, interaction-manager, zoom |
+| P1 ✅ | document-manager, viewport, scroll, render, tiling, interaction-manager, zoom |
 | P2 | thumbnail |
 | P3 | search, selection, rotate, spread, pan, print, view-manager |
 | P4 | annotation, form, stamp, signature, redaction, capture, export |
@@ -34,5 +50,5 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 ### Known Issues
 - `plugin-layout-analysis` skipped — only at `0.0.1`
 - WASM import uses `@embedpdf/pdfium/pdfium.wasm?url` (exports map)
-- No formatter configured yet (note for P1)
 - `bun run tauri dev` not verified (needs display)
+- Large JS chunks (347KB + 689KB) — consider code splitting in P6

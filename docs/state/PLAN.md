@@ -2,37 +2,25 @@
 
 This file tracks planned work. For current state, see `CURRENT.md`.
 
-## P1 — Core Viewer (next)
-
-**Goal:** Open a PDF from disk, render with zoom, scroll, tiling, and marquee zoom.
-
-**Plugins (7):** document-manager → viewport → scroll → render → tiling → interaction-manager → zoom
-
-**New dependency:** `@embedpdf/plugin-interaction-manager@^2.15.0`
-
-**Files (11):**
-
-| File | Action |
-|---|---|
-| `package.json` | Add `plugin-interaction-manager` |
-| `src/engine/use-engine.ts` | NEW |
-| `src/config/plugins.registry.ts` | NEW |
-| `src/services/file-service.ts` | NEW |
-| `src/stores/app-store.ts` | NEW |
-| `src/App.tsx` | MODIFY |
-| `src/views/home/HomeView.tsx` | NEW |
-| `src/views/viewer/ViewerView.tsx` | NEW |
-| `src/components/toolbar/FileBar.tsx` | NEW |
-| `src/components/toolbar/ZoomControls.tsx` | NEW |
-| `src/components/toolbar/PageNav.tsx` | NEW |
-
-**Also:** Configure formatter (Prettier or Biome), add `format:check` script.
-
 ## P2 — File Manager + Recents
 
 **Goal:** Home screen with recent files grid, thumbnails, drag & drop, document tabs.
 
 **Plugins:** thumbnail
+
+**Files:**
+
+| File | Action |
+|---|---|
+| `src/services/recent-files.ts` | NEW — CRUD via tauri-plugin-store, validate paths |
+| `src/services/thumbnails.ts` | NEW — render first page → canvas → downscale → dataURL |
+| `src/views/home/HomeView.tsx` | MODIFY — recent files grid + thumbnails + drag zone |
+| `src/views/home/RecentFileCard.tsx` | NEW — thumbnail + name + date card |
+| `src/views/home/DropZone.tsx` | NEW — drag & drop zone for PDF files |
+| `src/views/viewer/ViewerView.tsx` | MODIFY — add thumbnail sidebar + tabs |
+| `src/components/viewer/DocumentTabs.tsx` | NEW — tab bar for multi-document |
+| `src/components/viewer/ThumbnailSidebar.tsx` | NEW — `useThumbnail()` per page |
+| `src/stores/app-store.ts` | MODIFY — add `recentFiles: RecentFile[]` |
 
 ## P3 — Viewing Plugins
 
