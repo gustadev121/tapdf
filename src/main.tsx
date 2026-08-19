@@ -1,5 +1,10 @@
 import ReactDOM from "react-dom/client";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import App from "./App";
 import "./index.css";
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(<App />);
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  <TooltipProvider>
+    <App />
+  </TooltipProvider>,
+);

@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 
+import { Button } from "@/components/ui/button";
 import { openFile } from "@/services/file-service";
 import { useAppStore } from "@/stores/app-store";
 
@@ -14,17 +15,13 @@ export function HomeView() {
   }, [openFileStore]);
 
   return (
-    <main className="flex h-screen w-screen flex-col items-center justify-center bg-neutral-50 text-neutral-800 dark:bg-neutral-900 dark:text-neutral-100">
+    <main className="flex h-screen w-screen flex-col items-center justify-center bg-background text-foreground">
       <div className="flex flex-col items-center gap-6">
         <h1 className="text-4xl font-semibold tracking-tight">tapdf</h1>
-        <p className="text-sm text-neutral-500">Open a PDF to begin</p>
-        <button
-          type="button"
-          onClick={handleOpen}
-          className="rounded-lg bg-blue-600 px-6 py-3 text-sm font-medium text-white shadow-sm transition hover:bg-blue-700 active:bg-blue-800"
-        >
+        <p className="text-sm text-muted-foreground">Open a PDF to begin</p>
+        <Button size="lg" onClick={handleOpen}>
           Open PDF
-        </button>
+        </Button>
       </div>
     </main>
   );

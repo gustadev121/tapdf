@@ -1,6 +1,10 @@
 import { useZoom, ZoomMode } from "@embedpdf/plugin-zoom/react";
 import { Maximize, ZoomIn, ZoomOut } from "lucide-react";
 
+import { IconButton } from "@/components/ui/icon-button";
+import { ToolbarGroup } from "@/components/ui/toolbar-group";
+import { ZoomLevelBadge } from "@/components/ui/zoom-level-badge";
+
 interface ZoomControlsProps {
   documentId: string;
 }
@@ -11,34 +15,17 @@ export function ZoomControls({ documentId }: ZoomControlsProps) {
   if (!zoom) return null;
 
   return (
-    <div className="flex items-center gap-1">
-      <button
-        type="button"
-        onClick={zoom.zoomOut}
-        className="rounded-md p-1.5 text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-800 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
-        title="Zoom out"
-      >
+    <ToolbarGroup>
+      <IconButton tooltip="Zoom out" onClick={zoom.zoomOut}>
         <ZoomOut size={16} />
-      </button>
-      <span className="min-w-12 text-center text-xs text-neutral-600 dark:text-neutral-400">
-        {Math.round(state.currentZoomLevel * 100)}%
-      </span>
-      <button
-        type="button"
-        onClick={zoom.zoomIn}
-        className="rounded-md p-1.5 text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-800 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
-        title="Zoom in"
-      >
+      </IconButton>
+      <ZoomLevelBadge level={state.currentZoomLevel} />
+      <IconButton tooltip="Zoom in" onClick={zoom.zoomIn}>
         <ZoomIn size={16} />
-      </button>
-      <button
-        type="button"
-        onClick={() => zoom.requestZoom(ZoomMode.FitWidth)}
-        className="rounded-md p-1.5 text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-800 dark:hover:bg-neutral-700 dark:hover:text-neutral-100"
-        title="Fit width"
-      >
+      </IconButton>
+      <IconButton tooltip="Fit width" onClick={() => zoom.requestZoom(ZoomMode.FitWidth)}>
         <Maximize size={16} />
-      </button>
-    </div>
+      </IconButton>
+    </ToolbarGroup>
   );
 }
