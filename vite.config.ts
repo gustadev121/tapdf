@@ -30,4 +30,8 @@ export default defineConfig(async () => ({
     },
   },
   envPrefix: ["VITE_", "TAURI_ENV_*"],
+  build: {
+    target: process.env.TAURI_PLATFORM === "windows" ? "chrome105" : "safari13",
+    sourcemap: !!process.env.TAURI_DEBUG,
+  },
 }));
