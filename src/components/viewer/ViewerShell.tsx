@@ -1,4 +1,5 @@
 import { DocumentContent } from "@embedpdf/plugin-document-manager/react";
+import { useState } from "react";
 import { FileBar } from "@/components/toolbar/FileBar";
 import { PageNav } from "@/components/toolbar/PageNav";
 import { ZoomControls } from "@/components/toolbar/ZoomControls";
@@ -16,6 +17,8 @@ export function ViewerShell() {
   const setActiveDocument = useAppStore((s) => s.setActiveDocument);
   const closeFile = useAppStore((s) => s.closeFile);
 
+  const [pluginDocId, setPluginDocId] = useState<string | null>(null);
+
   const activeDoc = documents.find((d) => d.id === activeDocumentId);
 
   return (
@@ -27,13 +30,15 @@ export function ViewerShell() {
         onSelect={setActiveDocument}
         onClose={closeFile}
       />
-      {!activeDoc && <OpenFileBridge onOpened={() => {}} />}
+      {activeDoc && !pluginDocId && (
+        <OpenFileBridge buffer={activeDoc.buffer} name={activeDoc.name} onOpened={setPluginDocId} />
+      )}
       <div className="flex flex-1 overflow-hidden">
-        {activeDoc ? (
+        {activeDoc && pluginDocId ? (
           <>
-            <ThumbnailSidebar documentId={activeDoc.id} />
+            <ThumbnailSidebar documentId={pluginDocId} />
             <div className="flex-1 overflow-hidden">
-              <DocumentContent documentId={activeDoc.id}>
+              <DocumentContent documentId={pluginDocId}>
                 {({ isLoaded, isLoading, isError }) => {
                   if (isError) {
                     return (
@@ -41,7 +46,7 @@ export function ViewerShell() {
                     );
                   }
                   if (isLoaded) {
-                    return <ViewerArea documentId={activeDoc.id} />;
+                    return <ViewerArea documentId={pluginDocId} />;
                   }
                   return (
                     <FullScreenStatus variant="loading">
@@ -56,10 +61,10 @@ export function ViewerShell() {
           <FullScreenStatus variant="empty">No document loaded</FullScreenStatus>
         )}
       </div>
-      {activeDoc && (
+      {activeDoc && pluginDocId && (
         <StatusBar>
-          <PageNav documentId={activeDoc.id} />
-          <ZoomControls documentId={activeDoc.id} />
+          <PageNav documentId={pluginDocId} />
+          <ZoomControls documentId={pluginDocId} />
         </StatusBar>
       )}
     </div>
