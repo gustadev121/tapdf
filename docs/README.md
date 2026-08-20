@@ -19,7 +19,7 @@ Each subdirectory contains an `AGENTS.md` file with instructions specific to tha
 
 Agent instruction files are loaded via `opencode.jsonc`:
 ```json
-"instructions": ["docs/**/AGENTS.md", "AGENTS.md"]
+"instructions": ["docs/**/AGENTS.md"]
 ```
 
 ## For Humans

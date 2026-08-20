@@ -62,7 +62,7 @@ This file tracks planned work. For current state, see `CURRENT.md`.
 
 ## P4 — Editing
 
-**Goal:** Annotation, forms, stamps, signatures, redaction, capture, export/save.
+**Goal:** Annotation, capture, export, form, redaction, signature, stamp.
 
 ## P5 — Config System
 

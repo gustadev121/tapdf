@@ -119,7 +119,7 @@ Creates conventional commits.
 
 After completing a phase:
 
-1. Update `docs/state/AGENTS.md` with phase completion
+1. Update `docs/state/CURRENT.md` with phase completion
 2. Run full review (`@reviewer`) + test (`@tester`) + doc-check (`@doc-updater`)
 3. Commit with `feat(phase): description` (e.g., `feat(P1): core viewer`)
 4. Plan next phase with the build agent

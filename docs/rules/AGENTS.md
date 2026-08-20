@@ -5,9 +5,9 @@
 | Type             | Convention                    | Example                                |
 | ---------------- | ----------------------------- | -------------------------------------- |
 | React components | PascalCase                    | `ViewerView.tsx`, `ZoomControls.tsx`   |
-| Hooks            | camelCase + `use` prefix      | `use-engine.ts`, `use-settings.ts`     |
+| Hooks            | camelCase + `use` prefix      | `use-engine.ts`                       |
 | Services         | camelCase + `-service` suffix | `file-service.ts`, `recent-files.ts`   |
-| Config           | kebab-case                    | `app-config.ts`, `plugins.registry.ts` |
+| Config           | kebab-case                    | `plugins.registry.ts`                |
 | Stores           | kebab-case + `-store` suffix  | `app-store.ts`                         |
 | Tests            | `*.test.{ts,tsx}` in `tests/`     | `app-store.test.ts`, `FileBar.test.tsx` |
 | Test dirs        | Mirror `src/` under `tests/`  | `tests/unit/stores/`, `tests/component/components/ui/` |

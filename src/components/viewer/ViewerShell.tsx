@@ -2,6 +2,8 @@ import { DocumentContent } from "@embedpdf/plugin-document-manager/react";
 import { useState } from "react";
 import { FileBar } from "@/components/toolbar/FileBar";
 import { PageNav } from "@/components/toolbar/PageNav";
+import { SearchBar } from "@/components/toolbar/SearchBar";
+import { ViewControls } from "@/components/toolbar/ViewControls";
 import { ZoomControls } from "@/components/toolbar/ZoomControls";
 import { FullScreenStatus } from "@/components/ui/full-screen-status";
 import { StatusBar } from "@/components/ui/status-bar";
@@ -18,6 +20,7 @@ export function ViewerShell() {
   const closeFile = useAppStore((s) => s.closeFile);
 
   const [pluginDocId, setPluginDocId] = useState<string | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const activeDoc = documents.find((d) => d.id === activeDocumentId);
 
@@ -32,6 +35,13 @@ export function ViewerShell() {
       />
       {activeDoc && !pluginDocId && (
         <OpenFileBridge buffer={activeDoc.buffer} name={activeDoc.name} onOpened={setPluginDocId} />
+      )}
+      {activeDoc && pluginDocId && (
+        <SearchBar
+          documentId={pluginDocId}
+          isOpen={isSearchOpen}
+          onClose={() => setIsSearchOpen(false)}
+        />
       )}
       <div className="flex flex-1 overflow-hidden">
         {activeDoc && pluginDocId ? (
@@ -64,6 +74,7 @@ export function ViewerShell() {
       {activeDoc && pluginDocId && (
         <StatusBar>
           <PageNav documentId={pluginDocId} />
+          <ViewControls documentId={pluginDocId} />
           <ZoomControls documentId={pluginDocId} />
         </StatusBar>
       )}

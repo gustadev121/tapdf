@@ -19,7 +19,7 @@ docs(state): update P1 progress
 | Components | PascalCase | `ViewerView.tsx` |
 | Hooks | camelCase + `use` | `use-engine.ts` |
 | Services | camelCase | `file-service.ts` |
-| Config | kebab-case | `app-config.ts` |
+| Config | kebab-case | `plugins.registry.ts` |
 
 ## Key Rules
 
