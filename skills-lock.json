@@ -42,6 +42,12 @@
       "sourceType": "autoskills-registry",
       "computedHash": "2a14a5e08e521136f42265bf52cc297e49c5d877ecd4179b563ad85957bbbc07"
     },
+    "tdd": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "skillPath": "skills/engineering/tdd/SKILL.md",
+      "computedHash": "e753a5da75292bbe59d302d89566bc2c53d0e73944da2f0e944a7578883c07d0"
+    },
     "typescript-advanced-types": {
       "source": "wshobson/agents",
       "sourceType": "autoskills-registry",
