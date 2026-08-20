@@ -11,6 +11,7 @@ We use specialized AI agents for different tasks:
 | **Build** | Implements code changes (main agent) |
 | **Reviewer** | Runs code quality checks |
 | **Tester** | Runs the test suite |
+| **Doc-updater** | Audits documentation for consistency |
 | **Committer** | Creates conventional commits |
 
 ## The Workflow
@@ -27,6 +28,8 @@ Build agent executes (build mode)
 @reviewer checks code
     ↓ (pass)
 @tester runs tests
+    ↓ (pass)
+@doc-updater audits docs
     ↓ (pass)
 @committer creates commit
     ↓

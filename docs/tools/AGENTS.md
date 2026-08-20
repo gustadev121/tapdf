@@ -19,7 +19,7 @@ Key packages: `@embedpdf/core`, `@embedpdf/engines`, `@embedpdf/models`, `@embed
 - **Config:** https://v2.tauri.app/reference/config/
 - **Plugins:** https://v2.tauri.app/plugin/
 
-Plugins used: `tauri-plugin-fs`, `tauri-plugin-dialog`, `tauri-plugin-store`
+Plugins used: `tauri-plugin-fs`, `tauri-plugin-dialog`, `tauri-plugin-store`, `tauri-plugin-log`, `tauri-plugin-opener`
 
 ## Build Tools
 
@@ -42,11 +42,11 @@ Plugins used: `tauri-plugin-fs`, `tauri-plugin-dialog`, `tauri-plugin-store`
 - **CLI:** `bunx --bun shadcn@latest <command>`
 - **Theming:** https://ui.shadcn.com/docs/theming
 
-Style: New York. Base: Radix. Icon library: lucide-react.
+Style: New York. Base: Radix. Icon library: @tabler/icons-react.
 Components live in `src/components/ui/`. Utilities in `src/lib/utils.ts` (`cn()`).
 
-### Lucide React
-- **Docs:** https://lucide.dev/
+### Tabler Icons
+- **Docs:** https://tabler.io/icons
 
 ## Testing
 

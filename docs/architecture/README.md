@@ -13,7 +13,7 @@ Human-readable overview of the tapdf architecture.
 ## Key Patterns
 
 - **Headless PDF:** EmbedPDF provides hooks and layers, we build the UI
-- **Plugin registry:** Single file manages all 23 plugins with dependency ordering
+- **Plugin registry:** Single file manages all 24 plugins with dependency ordering
 - **Two state domains:** App state (Zustand) vs Plugin state (EmbedPDF hooks)
 - **Layered config:** Defaults → user overrides → merged → plugin registration
 - **Tauri as bridge:** Frontend owns all logic; Rust handles OS integration

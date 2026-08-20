@@ -8,9 +8,9 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 
 #### P0 — Scaffold ✅
 
-- 22 `@embedpdf/*` packages installed at `2.15.0`
-- `tauri-plugin-{fs,dialog,store}` registered in Rust
-- Capabilities: `fs:scope **`, `dialog:default`, `store:default`
+- 27 `@embedpdf/*` packages installed at `2.15.0`
+- `tauri-plugin-{fs,dialog,store,log,opener}` registered in Rust
+- Capabilities: `fs:default`, `fs:allow-read-file`, `fs:allow-write-file`, `fs:allow-exists`, `dialog:default`, `store:default`, `opener:default`, `log:default`
 - CSP set: `wasm-unsafe-eval` (script), `blob:` (worker)
 - Tailwind v4 wired via `@tailwindcss/vite`
 - Template stripped, `src/engine/wasm-url.ts` created
@@ -19,7 +19,7 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 #### P0.5 — Agent Workflow Documentation ✅
 
 - `opencode.jsonc` with instructions and references
-- 3 agents: reviewer, tester, committer
+- 4 agents: reviewer, tester, doc-updater, committer
 - `docs/` with 5 subdirectories (rules, tools, state, architecture, workflow)
 
 #### P1 — Core Viewer ✅
@@ -27,7 +27,7 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 - `@embedpdf/plugin-interaction-manager@2.15.0` installed
 - Biome formatter configured (`biome check` + `biome format`)
 - `src/engine/use-engine.ts` — PdfiumEngine wrapper with local WASM
-- `src/config/plugins.registry.ts` — 8 plugins: document-manager → viewport → scroll → render → tiling → thumbnail → interaction-manager → zoom
+- `src/config/plugins.registry.ts` — 7 plugins: document-manager → viewport → scroll → render → tiling → interaction-manager → zoom
 - `src/services/file-service.ts` — `openFile()` via Tauri dialog + fs
 - `src/stores/app-store.ts` — Zustand store with multi-document support
 - `src/App.tsx` — view switcher (home ↔ viewer)
@@ -41,11 +41,11 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 
 #### P1.5a — shadcn/ui + Atomic Components ✅
 
-- shadcn/ui initialized (New York style, Radix base, lucide icons)
+- shadcn/ui initialized (New York style, Radix base, tabler icons)
 - `components.json`, `src/lib/utils.ts` (`cn()`), CSS variables (`@theme inline`, OKLCH)
 - shadcn components: Button, Separator, Tooltip
 - Atomic components: IconButton, ToolbarGroup, StatusBar, FullScreenStatus, FileLabel, PageIndicator, ZoomLevelBadge
-- Extracted: OpenFileBridge, ViewerArea (from ViewerView)
+- Extracted: OpenFileBridge, ViewerArea, ViewerShell (from ViewerView)
 - Refactored: FileBar, ZoomControls, PageNav, HomeView, ViewerView
 - `TooltipProvider` in main.tsx
 - Biome CSS parser enabled for Tailwind v4
@@ -66,14 +66,15 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 - `src/views/home/HomeView.tsx` — Recent files grid + drop zone
 - `src/components/viewer/DocumentTabs.tsx` — Tab bar for multi-document
 - `src/components/viewer/ThumbnailSidebar.tsx` — Virtualized thumbnail sidebar using EmbedPDF plugin
+- `src/components/viewer/ViewerShell.tsx` — Extracted shell with local pluginDocId state
 - `src/views/viewer/ViewerView.tsx` — Updated with tabs + thumbnail sidebar
-- `src/views/viewer/OpenFileBridge.tsx` — Updated for multi-document support
+- `src/views/viewer/OpenFileBridge.tsx` — Accepts buffer/name as props
 - `src/stores/app-store.ts` — Multi-document state (documents[], activeDocumentId, recentFiles)
 - `@embedpdf/plugin-thumbnail@2.15.0` registered in plugins registry
-- 68 tests across 18 files
+- 67 tests across 17 files
 - `bun run build` ✅ · `bun run format:check` ✅ · `cargo check` ✅
 
-### Plugin Inventory (23 at v2.15.0)
+### Plugin Inventory (27 packages at v2.15.0)
 
 | Phase   | Plugins                                                                       |
 | ------- | ----------------------------------------------------------------------------- |
@@ -89,4 +90,4 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 - `plugin-layout-analysis` skipped — only at `0.0.1`
 - WASM import uses `@embedpdf/pdfium/pdfium.wasm?url` (exports map)
 - `bun run tauri dev` not verified (needs display)
-- Large JS chunks (310KB + 689KB) — consider code splitting in P6
+- Large JS chunks (456KB + 689KB) — consider code splitting in P6

@@ -14,7 +14,7 @@ PDF viewer and editor built with Tauri v2 + React 19 + EmbedPDF v2.15.0 headless
 | State      | zustand, zod                     | 5.x, 4.x    |
 | PDF Engine | EmbedPDF (headless)              | 2.15.0      |
 | Backend    | Rust, Tauri                      | 2.x         |
-| Plugins    | tauri-plugin-{fs, dialog, store} | 2.x         |
+| Plugins    | tauri-plugin-{fs, dialog, store, log, opener} | 2.x         |
 
 ## Build Commands
 
@@ -50,7 +50,7 @@ PDF viewer and editor built with Tauri v2 + React 19 + EmbedPDF v2.15.0 headless
 
 ## Skills Available
 
-9 autoskills loaded from `.agents/skills/`:
+12 autoskills loaded from `.agents/skills/`:
 
 | Skill                     | When to Use                                              |
 | ------------------------- | -------------------------------------------------------- |
@@ -64,6 +64,8 @@ PDF viewer and editor built with Tauri v2 + React 19 + EmbedPDF v2.15.0 headless
 | accessibility             | WCAG compliance, screen reader support                   |
 | seo                       | Search engine optimization (less relevant for desktop)   |
 | tdd                       | TDD, red-green-refactor, test-first, integration tests   |
+| shadcn                    | shadcn/ui components, theming, CLI commands               |
+| vitest                    | Vitest testing, mocking, coverage, browser mode           |
 
 ## Key Conventions
 

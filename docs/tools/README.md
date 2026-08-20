@@ -15,7 +15,7 @@ Tools and platforms used in the tapdf project.
 | Tailwind CSS | Utility-first CSS | 4.x |
 | Zustand | State management | 5.x |
 | Zod | Schema validation | 4.x |
-| Lucide React | Icon library | latest |
+| Tabler Icons | Icon library | latest |
 
 ## References
 
