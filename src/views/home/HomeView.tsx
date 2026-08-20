@@ -1,3 +1,4 @@
+import { readFile } from "@tauri-apps/plugin-fs";
 import { useCallback, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -23,16 +24,8 @@ export function HomeView() {
     }
   }, [openFileStore]);
 
-  const handleDrop = useCallback(
-    (buffer: ArrayBuffer, name: string, path: string) => {
-      openFileStore(buffer, name, path);
-    },
-    [openFileStore],
-  );
-
   const handleOpenRecent = useCallback(
     async (path: string) => {
-      const { readFile } = await import("@tauri-apps/plugin-fs");
       const bytes = await readFile(path);
       const buffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
       const name = path.split(/[/\\]/).pop() || "document.pdf";
@@ -71,7 +64,7 @@ export function HomeView() {
         )}
 
         <div className="flex-1">
-          <DropZone onFileDropped={handleDrop} />
+          <DropZone onFileDropped={openFileStore} />
         </div>
       </div>
     </main>

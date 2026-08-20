@@ -1,4 +1,4 @@
-import { ArrowLeft } from "lucide-react";
+import { IconArrowLeft } from "@tabler/icons-react";
 
 import { FileLabel } from "@/components/ui/file-label";
 import { IconButton } from "@/components/ui/icon-button";
@@ -17,7 +17,7 @@ export function FileBar() {
         tooltip="Back to home"
         onClick={() => activeDocumentId && closeFile(activeDocumentId)}
       >
-        <ArrowLeft size={18} />
+        <IconArrowLeft size={18} />
       </IconButton>
       <FileLabel name={activeDoc?.name ?? ""} />
     </div>

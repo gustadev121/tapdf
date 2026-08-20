@@ -1,5 +1,10 @@
 import { vi } from "vitest";
 
+declare global {
+  // biome-ignore lint/suspicious/noExplicitAny: test helper
+  var __testStore: Map<string, any>;
+}
+
 vi.mock("@tauri-apps/plugin-dialog", () => ({
   open: vi.fn().mockResolvedValue(null),
 }));
@@ -10,12 +15,14 @@ vi.mock("@tauri-apps/plugin-fs", () => ({
 }));
 
 vi.mock("@tauri-apps/plugin-store", () => {
-  let store = new Map<string, unknown>();
+  if (!globalThis.__testStore) {
+    globalThis.__testStore = new Map<string, unknown>();
+  }
 
   class MockLazyStore {
-    get = vi.fn((key: string) => Promise.resolve(store.get(key)));
+    get = vi.fn((key: string) => Promise.resolve(globalThis.__testStore.get(key)));
     set = vi.fn((key: string, value: unknown) => {
-      store.set(key, value);
+      globalThis.__testStore.set(key, value);
       return Promise.resolve();
     });
     init = vi.fn().mockResolvedValue(undefined);
@@ -24,19 +31,6 @@ vi.mock("@tauri-apps/plugin-store", () => {
 
   return {
     LazyStore: MockLazyStore,
-    Store: {
-      load: vi.fn().mockResolvedValue({
-        get: vi.fn((key: string) => Promise.resolve(store.get(key))),
-        set: vi.fn((key: string, value: unknown) => {
-          store.set(key, value);
-          return Promise.resolve();
-        }),
-        save: vi.fn().mockResolvedValue(undefined),
-      }),
-    },
-    __resetStore: () => {
-      store = new Map<string, unknown>();
-    },
   };
 });
 

@@ -1,4 +1,4 @@
-import { FileText, Trash2 } from "lucide-react";
+import { IconFileText, IconTrash } from "@tabler/icons-react";
 import { IconButton } from "@/components/ui/icon-button";
 import type { RecentFile } from "@/services/recent-files";
 
@@ -18,7 +18,7 @@ export function RecentFileCard({ file, onOpen, onRemove }: RecentFileCardProps) 
       onClick={() => onOpen(file.path)}
     >
       <div className="flex items-center justify-center h-24 rounded-md bg-muted">
-        <FileText size={32} className="text-muted-foreground" />
+        <IconFileText size={32} className="text-muted-foreground" />
       </div>
       <div className="flex items-start justify-between gap-2">
         <div className="flex-1 min-w-0">
@@ -33,7 +33,7 @@ export function RecentFileCard({ file, onOpen, onRemove }: RecentFileCardProps) 
           }}
           className="opacity-0 group-hover:opacity-100 transition-opacity"
         >
-          <Trash2 size={14} />
+          <IconTrash size={14} />
         </IconButton>
       </div>
     </button>

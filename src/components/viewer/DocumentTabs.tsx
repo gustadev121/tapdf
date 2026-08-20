@@ -1,4 +1,4 @@
-import { X } from "lucide-react";
+import { IconX } from "@tabler/icons-react";
 import { IconButton } from "@/components/ui/icon-button";
 import { cn } from "@/lib/utils";
 
@@ -51,9 +51,9 @@ export function DocumentTabs({
               e.stopPropagation();
               onClose(doc.id);
             }}
-            className="h-4 w-4 p-0 hover:bg-muted-foreground/20"
+            className="size-4 p-0 hover:bg-muted-foreground/20"
           >
-            <X size={12} />
+            <IconX size={12} />
           </IconButton>
         </div>
       ))}

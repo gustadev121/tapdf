@@ -1,6 +1,6 @@
 import { useScroll } from "@embedpdf/plugin-scroll/react";
 import { ThumbImg, ThumbnailsPane, useThumbnailCapability } from "@embedpdf/plugin-thumbnail/react";
-import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { IconLayoutSidebarLeftCollapse, IconLayoutSidebarLeftExpand } from "@tabler/icons-react";
 import { useState } from "react";
 import { IconButton } from "@/components/ui/icon-button";
 import { cn } from "@/lib/utils";
@@ -29,18 +29,13 @@ export function ThumbnailSidebar({ documentId }: ThumbnailSidebarProps) {
                 <button
                   key={m.pageIndex}
                   type="button"
-                  style={{
-                    position: "absolute",
-                    top: m.top,
-                    height: m.wrapperHeight,
-                    width: "100%",
-                  }}
-                  className="cursor-pointer px-2 bg-transparent border-0"
+                  className="absolute inset-x-0 cursor-pointer bg-transparent border-0 px-2"
+                  style={{ top: m.top, height: m.wrapperHeight }}
                   onClick={() => scroll?.scrollToPage({ pageNumber: m.pageIndex + 1 })}
                 >
                   <div
-                    style={{ width: m.width, height: m.height }}
                     className="mx-auto overflow-hidden rounded border border-border"
+                    style={{ width: m.width, height: m.height }}
                   >
                     <ThumbImg documentId={documentId} meta={m} />
                   </div>
@@ -56,9 +51,13 @@ export function ThumbnailSidebar({ documentId }: ThumbnailSidebarProps) {
       <IconButton
         tooltip={isOpen ? "Close thumbnails" : "Open thumbnails"}
         onClick={() => setIsOpen(!isOpen)}
-        className="h-8 w-8 shrink-0"
+        className="size-8 shrink-0"
       >
-        {isOpen ? <PanelLeftClose size={16} /> : <PanelLeftOpen size={16} />}
+        {isOpen ? (
+          <IconLayoutSidebarLeftCollapse size={16} />
+        ) : (
+          <IconLayoutSidebarLeftExpand size={16} />
+        )}
       </IconButton>
     </div>
   );

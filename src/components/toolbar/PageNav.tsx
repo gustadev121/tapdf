@@ -1,5 +1,5 @@
 import { useScroll } from "@embedpdf/plugin-scroll/react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 
 import { IconButton } from "@/components/ui/icon-button";
 import { PageIndicator } from "@/components/ui/page-indicator";
@@ -21,7 +21,7 @@ export function PageNav({ documentId }: PageNavProps) {
         onClick={() => scroll.scrollToPreviousPage()}
         disabled={state.currentPage <= 0}
       >
-        <ChevronLeft size={16} />
+        <IconChevronLeft size={16} />
       </IconButton>
       <PageIndicator current={state.currentPage} total={state.totalPages} />
       <IconButton
@@ -29,7 +29,7 @@ export function PageNav({ documentId }: PageNavProps) {
         onClick={() => scroll.scrollToNextPage()}
         disabled={state.currentPage >= state.totalPages}
       >
-        <ChevronRight size={16} />
+        <IconChevronRight size={16} />
       </IconButton>
     </ToolbarGroup>
   );

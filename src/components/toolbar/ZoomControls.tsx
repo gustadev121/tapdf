@@ -1,5 +1,5 @@
 import { useZoom, ZoomMode } from "@embedpdf/plugin-zoom/react";
-import { Maximize, ZoomIn, ZoomOut } from "lucide-react";
+import { IconMaximize, IconZoomIn, IconZoomOut } from "@tabler/icons-react";
 
 import { IconButton } from "@/components/ui/icon-button";
 import { ToolbarGroup } from "@/components/ui/toolbar-group";
@@ -17,14 +17,14 @@ export function ZoomControls({ documentId }: ZoomControlsProps) {
   return (
     <ToolbarGroup>
       <IconButton tooltip="Zoom out" onClick={zoom.zoomOut}>
-        <ZoomOut size={16} />
+        <IconZoomOut size={16} />
       </IconButton>
       <ZoomLevelBadge level={state.currentZoomLevel} />
       <IconButton tooltip="Zoom in" onClick={zoom.zoomIn}>
-        <ZoomIn size={16} />
+        <IconZoomIn size={16} />
       </IconButton>
       <IconButton tooltip="Fit width" onClick={() => zoom.requestZoom(ZoomMode.FitWidth)}>
-        <Maximize size={16} />
+        <IconMaximize size={16} />
       </IconButton>
     </ToolbarGroup>
   );

@@ -1,4 +1,4 @@
-import { Upload } from "lucide-react";
+import { IconUpload } from "@tabler/icons-react";
 import { useCallback, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -56,7 +56,7 @@ export function DropZone({ onFileDropped }: DropZoneProps) {
           : "border-muted-foreground/25 hover:border-muted-foreground/50",
       )}
     >
-      <Upload
+      <IconUpload
         size={48}
         className={cn("transition-colors", isDragOver ? "text-primary" : "text-muted-foreground")}
       />

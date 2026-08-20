@@ -1,8 +1,10 @@
 import { afterEach, describe, expect, test, vi } from "vitest";
 
-const mockOpenDocumentBuffer = vi.fn();
-const mockRenderThumbnail = vi.fn();
-const mockCloseDocument = vi.fn();
+const { mockOpenDocumentBuffer, mockRenderThumbnail, mockCloseDocument } = vi.hoisted(() => ({
+  mockOpenDocumentBuffer: vi.fn(),
+  mockRenderThumbnail: vi.fn(),
+  mockCloseDocument: vi.fn(),
+}));
 
 vi.mock("@embedpdf/engines", () => ({
   createPdfiumDirectEngine: vi.fn().mockResolvedValue({

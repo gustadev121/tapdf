@@ -6,13 +6,10 @@ import {
   removeRecentFile,
 } from "@/services/recent-files";
 
-const storeModule = await import("@tauri-apps/plugin-store");
-const __resetStore = (storeModule as Record<string, unknown>).__resetStore as () => void;
-
 beforeEach(() => {
   vi.useFakeTimers();
   vi.setSystemTime(new Date("2025-01-15T10:00:00Z"));
-  __resetStore();
+  globalThis.__testStore?.clear();
 });
 
 afterEach(() => {
