@@ -1,6 +1,5 @@
 import { usePdfiumEngine } from "@embedpdf/engines/react";
-
-import { wasmUrl } from "./wasm-url";
+import { wasmUrl } from "@/engine/wasm-url";
 
 export function useEngine() {
   const { engine, isLoading, error } = usePdfiumEngine({

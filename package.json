@@ -8,9 +8,12 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "tauri": "tauri",
-    "format": "biome format --write src/",
-    "format:check": "biome check src/",
-    "format:rust": "cargo fmt --manifest-path src-tauri/Cargo.toml"
+    "format": "biome format --write",
+    "format:check": "biome check --write",
+    "format:rust": "cargo fmt --manifest-path src-tauri/Cargo.toml",
+    "test": "bunx vitest run --browser.headless",
+    "test:watch": "bunx vitest --browser.headless",
+    "test:ui": "bunx vitest --ui"
   },
   "dependencies": {
     "@embedpdf/core": "^2.15.0",
@@ -69,8 +72,12 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.6.0",
+    "@vitest/browser-playwright": "^4.1.11",
+    "shadcn": "^4.18.0",
     "tailwindcss": "^4",
     "typescript": "~5.8.3",
-    "vite": "^7.0.4"
+    "vite": "^7.0.4",
+    "vitest": "^4.1.11",
+    "vitest-browser-react": "^2.2.0"
   }
 }

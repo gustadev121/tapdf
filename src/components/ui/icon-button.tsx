@@ -10,7 +10,7 @@ function IconButton({ tooltip, children, ...props }: IconButtonProps) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button variant="ghost" size="icon-sm" {...props}>
+        <Button variant="ghost" size="icon-sm" aria-label={tooltip} {...props}>
           {children}
         </Button>
       </TooltipTrigger>

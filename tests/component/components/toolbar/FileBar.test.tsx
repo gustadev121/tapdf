@@ -1,0 +1,37 @@
+import { afterEach, describe, expect, test } from "vitest";
+import { render } from "vitest-browser-react";
+import { FileBar } from "@/components/toolbar/FileBar";
+import { useAppStore } from "@/stores/app-store";
+import { TestWrapper } from "@/tests/helpers";
+
+describe("FileBar", () => {
+  afterEach(() => {
+    useAppStore.setState({ activeName: "", view: "home" });
+  });
+
+  describe("rendering", () => {
+    test("should display the active file name from store", async () => {
+      useAppStore.setState({ activeName: "test.pdf" });
+      const screen = await render(
+        <TestWrapper>
+          <FileBar />
+        </TestWrapper>,
+      );
+
+      await expect.element(screen.getByText("test.pdf")).toBeInTheDocument();
+    });
+
+    test("should render the back button with accessible name", async () => {
+      useAppStore.setState({ activeName: "test.pdf" });
+      const screen = await render(
+        <TestWrapper>
+          <FileBar />
+        </TestWrapper>,
+      );
+
+      await expect
+        .element(screen.getByRole("button", { name: /back to home/i }))
+        .toBeInTheDocument();
+    });
+  });
+});

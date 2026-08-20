@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import { IconFolderOpen } from "@tabler/icons-react";
+import { cn } from "@/lib/utils";
 
 interface FileLabelProps extends React.ComponentProps<"div"> {
   name: string;
