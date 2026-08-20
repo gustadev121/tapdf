@@ -71,3 +71,4 @@ PDF viewer and editor built with Tauri v2 + React 19 + EmbedPDF v2.15.0 headless
 - Use zustand for app state, EmbedPDF plugin hooks for plugin state
 - Run `bun run build` + `cargo check` before committing
 - Follow conventional commits: `type(scope): description`
+- Run `@doc-updater` after code/test changes to audit docs for consistency
