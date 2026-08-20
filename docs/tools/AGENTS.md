@@ -56,7 +56,7 @@ Components live in `src/components/ui/`. Utilities in `src/lib/utils.ts` (`cn()`
 - **Config:** https://vitest.dev/config/
 
 Packages: `vitest`, `@vitest/browser-playwright`, `vitest-browser-react`
-Browser: Chromium via Playwright. Tauri APIs mocked in `tests/setup.ts`.
+Browser: Chromium via Playwright. Tauri APIs mocked globally in `tests/setup.ts`. Plugin mocks use `vi.hoisted()` at top-level with `vi.mock()`.
 Tests in `tests/unit/` (pure logic) and `tests/component/` (browser DOM).
 
 ## State Management

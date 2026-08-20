@@ -9,7 +9,7 @@
 | Services         | camelCase + `-service` suffix | `file-service.ts`, `recent-files.ts`   |
 | Config           | kebab-case                    | `app-config.ts`, `plugins.registry.ts` |
 | Stores           | kebab-case + `-store` suffix  | `app-store.ts`                         |
-| Tests            | `*.test.{ts,tsx}` co-located  | `app-store.test.ts`, `FileBar.test.tsx` |
+| Tests            | `*.test.{ts,tsx}` in `tests/`     | `app-store.test.ts`, `FileBar.test.tsx` |
 | Test dirs        | Mirror `src/` under `tests/`  | `tests/unit/stores/`, `tests/component/components/ui/` |
 
 ## Code Rules
