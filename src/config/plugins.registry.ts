@@ -3,7 +3,6 @@ import { Rotation } from "@embedpdf/models";
 import { DocumentManagerPluginPackage } from "@embedpdf/plugin-document-manager/react";
 import { InteractionManagerPluginPackage } from "@embedpdf/plugin-interaction-manager/react";
 import { PanPluginPackage } from "@embedpdf/plugin-pan/react";
-import { PrintPluginPackage } from "@embedpdf/plugin-print/react";
 import { RenderPluginPackage } from "@embedpdf/plugin-render/react";
 import { RotatePluginPackage } from "@embedpdf/plugin-rotate/react";
 import { ScrollPluginPackage, ScrollStrategy } from "@embedpdf/plugin-scroll/react";
@@ -62,6 +61,5 @@ export function buildPlugins() {
     createPluginRegistration(PanPluginPackage, {
       defaultMode: "mobile",
     }),
-    createPluginRegistration(PrintPluginPackage, {}),
   ];
 }

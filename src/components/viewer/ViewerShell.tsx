@@ -74,7 +74,7 @@ export function ViewerShell() {
       {activeDoc && pluginDocId && (
         <StatusBar>
           <PageNav documentId={pluginDocId} />
-          <ViewControls documentId={pluginDocId} />
+          <ViewControls documentId={pluginDocId} buffer={activeDoc.buffer} />
           <ZoomControls documentId={pluginDocId} />
         </StatusBar>
       )}

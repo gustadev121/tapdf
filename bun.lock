@@ -17,7 +17,6 @@
         "@embedpdf/plugin-i18n": "^2.15.0",
         "@embedpdf/plugin-interaction-manager": "^2.15.0",
         "@embedpdf/plugin-pan": "^2.15.0",
-        "@embedpdf/plugin-print": "^2.15.0",
         "@embedpdf/plugin-redaction": "^2.15.0",
         "@embedpdf/plugin-render": "^2.15.0",
         "@embedpdf/plugin-rotate": "^2.15.0",
@@ -197,8 +196,6 @@
     "@embedpdf/plugin-interaction-manager": ["@embedpdf/plugin-interaction-manager@2.15.0", "", { "dependencies": { "@embedpdf/models": "2.15.0" }, "peerDependencies": { "@embedpdf/core": "2.15.0", "preact": "^10.26.4", "react": ">=16.8.0", "react-dom": ">=16.8.0", "svelte": ">=5 <6", "vue": ">=3.2.0" } }, "sha512-YCMvTvu4Fm1KNuEhj+CftzG+T6F1+/QhI7eaYft9Lp5xm3CYSXdR3pNfGwNFy5XkDUDwB1IscLTiU0q75viMCw=="],
 
     "@embedpdf/plugin-pan": ["@embedpdf/plugin-pan@2.15.0", "", { "dependencies": { "@embedpdf/models": "2.15.0" }, "peerDependencies": { "@embedpdf/core": "2.15.0", "@embedpdf/plugin-interaction-manager": "2.15.0", "@embedpdf/plugin-viewport": "2.15.0", "preact": "^10.26.4", "react": ">=16.8.0", "react-dom": ">=16.8.0", "svelte": ">=5 <6", "vue": ">=3.2.0" } }, "sha512-bgFM7xTJRNzkFs5CH9apv5USR7Db2fdbNVbHq/U1GanEyz/71gZGoDWUN9FF/FbNvBfSfvPYZDv9DLJYLbeoBQ=="],
-
-    "@embedpdf/plugin-print": ["@embedpdf/plugin-print@2.15.0", "", { "dependencies": { "@embedpdf/models": "2.15.0" }, "peerDependencies": { "@embedpdf/core": "2.15.0", "preact": "^10.26.4", "react": ">=18.0.0", "react-dom": ">=18.0.0", "svelte": ">=5 <6", "vue": ">=3.2.0" } }, "sha512-IS6Wvi7zY0iozdYmVwfZXSjKURBe4AqhuyV1QtbcUS1hZxe0ASRETGiHe9ONpuokWemZmYDHNyTrdF7+5hdLEw=="],
 
     "@embedpdf/plugin-redaction": ["@embedpdf/plugin-redaction@2.15.0", "", { "dependencies": { "@embedpdf/models": "2.15.0", "@embedpdf/utils": "2.15.0" }, "peerDependencies": { "@embedpdf/core": "2.15.0", "@embedpdf/plugin-annotation": "2.15.0", "@embedpdf/plugin-history": "2.15.0", "@embedpdf/plugin-interaction-manager": "2.15.0", "@embedpdf/plugin-selection": "2.15.0", "preact": "^10.26.4", "react": ">=16.8.0", "react-dom": ">=16.8.0", "svelte": ">=5 <6", "vue": ">=3.2.0" } }, "sha512-H4WgRSSqBlWtP7sgDbAqWW/w6HAyjA3RS6lMuEmCMF19trDyQMdeAC8ZyQkFCYudFk9L+ydradSbNBYK18PfDw=="],
 

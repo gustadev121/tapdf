@@ -11,7 +11,16 @@ vi.mock("@tauri-apps/plugin-dialog", () => ({
 
 vi.mock("@tauri-apps/plugin-fs", () => ({
   readFile: vi.fn().mockResolvedValue(new Uint8Array()),
+  writeFile: vi.fn().mockResolvedValue(undefined),
   exists: vi.fn().mockResolvedValue(true),
+}));
+
+vi.mock("@tauri-apps/plugin-opener", () => ({
+  openPath: vi.fn().mockResolvedValue(undefined),
+}));
+
+vi.mock("@tauri-apps/api/path", () => ({
+  tempDir: vi.fn().mockResolvedValue("/tmp"),
 }));
 
 vi.mock("@tauri-apps/plugin-store", () => {

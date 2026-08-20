@@ -3,7 +3,6 @@ import {
   PagePointerProvider,
 } from "@embedpdf/plugin-interaction-manager/react";
 import { PanMode } from "@embedpdf/plugin-pan/react";
-import { PrintFrame } from "@embedpdf/plugin-print/react";
 import { RenderLayer } from "@embedpdf/plugin-render/react";
 import { Rotate } from "@embedpdf/plugin-rotate/react";
 import { type PageLayout, Scroller } from "@embedpdf/plugin-scroll/react";
@@ -41,7 +40,6 @@ export function ViewerArea({ documentId }: ViewerAreaProps) {
           <Scroller documentId={documentId} renderPage={renderPage} />
         </ZoomGestureWrapper>
         <PanMode />
-        <PrintFrame />
       </Viewport>
     </GlobalPointerProvider>
   );
