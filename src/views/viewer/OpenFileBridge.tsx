@@ -8,17 +8,19 @@ interface OpenFileBridgeProps {
 
 export function OpenFileBridge({ onOpened }: OpenFileBridgeProps) {
   const { provides: docManager } = useDocumentManagerCapability();
-  const activeBuffer = useAppStore((s) => s.activeBuffer);
-  const activeName = useAppStore((s) => s.activeName);
+  const activeDocumentId = useAppStore((s) => s.activeDocumentId);
+  const documents = useAppStore((s) => s.documents);
   const called = useRef(false);
 
+  const activeDoc = documents.find((d) => d.id === activeDocumentId);
+
   useEffect(() => {
-    if (!docManager || !activeBuffer || called.current) return;
+    if (!docManager || !activeDoc || called.current) return;
     called.current = true;
 
     const task = docManager.openDocumentBuffer({
-      buffer: activeBuffer,
-      name: activeName,
+      buffer: activeDoc.buffer,
+      name: activeDoc.name,
     });
 
     task.wait(
@@ -30,7 +32,7 @@ export function OpenFileBridge({ onOpened }: OpenFileBridgeProps) {
         called.current = false;
       },
     );
-  }, [docManager, activeBuffer, activeName, onOpened]);
+  }, [docManager, activeDoc, onOpened]);
 
   return null;
 }

@@ -2,7 +2,7 @@
 
 This file tracks planned work. For current state, see `CURRENT.md`.
 
-## P1.5a — shadcn/ui + Atomic Components
+## P1.5a — shadcn/ui + Atomic Components ✅
 
 **Goal:** Initialize shadcn/ui (New York, Radix), extract shared UI patterns into atomic components, refactor existing toolbar/viewer to use them.
 
@@ -28,11 +28,11 @@ This file tracks planned work. For current state, see `CURRENT.md`.
 | `src/components/toolbar/PageNav.tsx` | MODIFY — use IconButton + PageIndicator |
 | `src/views/viewer/ViewerView.tsx` | MODIFY — use FullScreenStatus + StatusBar |
 
-## P1.5b — Testing Suite
+## P1.5b — Testing Suite ✅
 
 **Goal:** Vitest browser mode with Playwright, test all P1 components.
 
-## P2 — File Manager + Recents
+## P2 — File Manager + Recents ✅
 
 **Goal:** Home screen with recent files grid, thumbnails, drag & drop, document tabs.
 

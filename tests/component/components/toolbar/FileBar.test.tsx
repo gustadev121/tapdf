@@ -6,12 +6,16 @@ import { TestWrapper } from "@/tests/helpers";
 
 describe("FileBar", () => {
   afterEach(() => {
-    useAppStore.setState({ activeName: "", view: "home" });
+    useAppStore.setState({
+      documents: [],
+      activeDocumentId: null,
+      view: "home",
+    });
   });
 
   describe("rendering", () => {
     test("should display the active file name from store", async () => {
-      useAppStore.setState({ activeName: "test.pdf" });
+      useAppStore.getState().openFile(new ArrayBuffer(100), "test.pdf", "/path/test.pdf");
       const screen = await render(
         <TestWrapper>
           <FileBar />
@@ -22,7 +26,7 @@ describe("FileBar", () => {
     });
 
     test("should render the back button with accessible name", async () => {
-      useAppStore.setState({ activeName: "test.pdf" });
+      useAppStore.getState().openFile(new ArrayBuffer(100), "test.pdf", "/path/test.pdf");
       const screen = await render(
         <TestWrapper>
           <FileBar />

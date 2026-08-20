@@ -2,7 +2,7 @@
 
 This file tracks the current project state. For planned work, see `PLAN.md`.
 
-## Phase: P1.5 Complete
+## Phase: P2 Complete
 
 ### Completed
 
@@ -27,9 +27,9 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 - `@embedpdf/plugin-interaction-manager@2.15.0` installed
 - Biome formatter configured (`biome check` + `biome format`)
 - `src/engine/use-engine.ts` — PdfiumEngine wrapper with local WASM
-- `src/config/plugins.registry.ts` — 7 plugins: document-manager → viewport → scroll → render → tiling → interaction-manager → zoom
+- `src/config/plugins.registry.ts` — 8 plugins: document-manager → viewport → scroll → render → tiling → thumbnail → interaction-manager → zoom
 - `src/services/file-service.ts` — `openFile()` via Tauri dialog + fs
-- `src/stores/app-store.ts` — Zustand store (view, buffer, name, path)
+- `src/stores/app-store.ts` — Zustand store with multi-document support
 - `src/App.tsx` — view switcher (home ↔ viewer)
 - `src/views/home/HomeView.tsx` — "Open a PDF" button + empty state
 - `src/views/viewer/ViewerView.tsx` — EmbedPDF provider + full viewer layout
@@ -54,20 +54,31 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 
 - Vitest 4.1 + `@vitest/browser-playwright` + `vitest-browser-react`
 - Browser mode: Chromium via Playwright, headless
-- Global mocks in `tests/setup.ts` (Tauri dialog, fs)
+- Global mocks in `tests/setup.ts` (Tauri dialog, fs, store)
 - `tsconfig.vitest.json` for test TypeScript config
-- 53 tests across 16 files:
-  - Unit: app-store (4), file-service (4), plugins.registry (3)
-  - Component: icon-button, toolbar-group, full-screen-status, file-label, page-indicator, zoom-level-badge, status-bar
-  - Component: FileBar, ZoomControls, PageNav
-  - Views: HomeView, ViewerShell, App
+
+#### P2 — File Manager + Recents ✅
+
+- `src/services/recent-files.ts` — CRUD via tauri-plugin-store, 20 file limit
+- `src/services/thumbnails.ts` — Canvas-based thumbnail generation via EmbedPDF engine
+- `src/views/home/RecentFileCard.tsx` — Card with thumbnail + name + date
+- `src/views/home/DropZone.tsx` — Drag & drop zone for PDF files
+- `src/views/home/HomeView.tsx` — Recent files grid + drop zone
+- `src/components/viewer/DocumentTabs.tsx` — Tab bar for multi-document
+- `src/components/viewer/ThumbnailSidebar.tsx` — Virtualized thumbnail sidebar using EmbedPDF plugin
+- `src/views/viewer/ViewerView.tsx` — Updated with tabs + thumbnail sidebar
+- `src/views/viewer/OpenFileBridge.tsx` — Updated for multi-document support
+- `src/stores/app-store.ts` — Multi-document state (documents[], activeDocumentId, recentFiles)
+- `@embedpdf/plugin-thumbnail@2.15.0` registered in plugins registry
+- 68 tests across 18 files
+- `bun run build` ✅ · `bun run format:check` ✅ · `cargo check` ✅
 
 ### Plugin Inventory (23 at v2.15.0)
 
 | Phase   | Plugins                                                                       |
 | ------- | ----------------------------------------------------------------------------- |
 | P1 ✅   | document-manager, viewport, scroll, render, tiling, interaction-manager, zoom |
-| P2      | thumbnail                                                                     |
+| P2 ✅   | thumbnail                                                                     |
 | P3      | search, selection, rotate, spread, pan, print, view-manager                   |
 | P4      | annotation, form, stamp, signature, redaction, capture, export                |
 | P5      | i18n, commands                                                                |
@@ -78,4 +89,4 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 - `plugin-layout-analysis` skipped — only at `0.0.1`
 - WASM import uses `@embedpdf/pdfium/pdfium.wasm?url` (exports map)
 - `bun run tauri dev` not verified (needs display)
-- Large JS chunks (347KB + 689KB) — consider code splitting in P6
+- Large JS chunks (310KB + 689KB) — consider code splitting in P6
