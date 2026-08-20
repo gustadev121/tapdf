@@ -52,9 +52,13 @@ This file tracks planned work. For current state, see `CURRENT.md`.
 | `src/components/viewer/ThumbnailSidebar.tsx` | NEW — `useThumbnail()` per page |
 | `src/stores/app-store.ts` | MODIFY — add `recentFiles: RecentFile[]` |
 
-## P3 — Viewing Plugins
+## P3 — Viewing Plugins 🔄
 
 **Goal:** Search, selection, rotate, spread, pan, print, view-manager.
+
+**Plugins registered (6/7):** search, selection, rotate, spread, pan, print
+
+**Pending:** view-manager
 
 ## P4 — Editing
 

@@ -35,7 +35,7 @@ PDF viewer and editor built with Tauri v2 + React 19 + EmbedPDF v2.15.0 headless
 | P1    | ✅ Done    | Core viewer: engine, 7 plugins, file open, toolbar                |
 | P1.5  | ✅ Done    | Testing suite, shadcn/ui, atomic components                       |
 | P2    | ✅ Done    | File manager: recents, thumbnails, drag & drop, tabs              |
-| P3    | 📋 Planned | Viewing plugins: search, selection, rotate, spread, pan, print    |
+| P3    | 🔄 In Progress | Viewing plugins: search, selection, rotate, spread, pan, print (6/7 registered) |
 | P4    | 📋 Planned | Editing: annotation, forms, stamps, signatures, redaction, export |
 | P5    | 📋 Planned | Config system: settings dialog, i18n, shortcuts                   |
 | P6    | 📋 Planned | Hardening: error handling, perf, production build                 |

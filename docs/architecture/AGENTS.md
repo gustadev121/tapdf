@@ -15,7 +15,7 @@ The viewer composes EmbedPDF headless components into a layered structure:
 - Viewport wraps Scroller (virtual scrolling, page layout)
 - Scroller renders pages via renderPage callback
 - Each page composes: base render layer + high-res tiling layer + interaction layers
-- Interaction layers (annotation, form, redaction, selection) stack on top
+- Interaction layers (selection [registered], annotation/form/redaction [planned P4]) stack on top
 - Zoom gesture wrapper enables wheel/pinch zoom at the viewport level
 
 ## Plugin System

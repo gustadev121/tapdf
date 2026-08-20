@@ -50,7 +50,17 @@ export default defineConfig({
     deps: {
       optimizer: {
         client: {
-          include: ["react", "react-dom", "@radix-ui/react-tooltip"],
+          include: [
+            "react",
+            "react-dom",
+            "@radix-ui/react-tooltip",
+            "@embedpdf/plugin-pan/react",
+            "@embedpdf/plugin-print/react",
+            "@embedpdf/plugin-rotate/react",
+            "@embedpdf/plugin-search/react",
+            "@embedpdf/plugin-selection/react",
+            "@embedpdf/plugin-spread/react",
+          ],
         },
       },
     },

@@ -2,7 +2,7 @@
 
 This file tracks the current project state. For planned work, see `PLAN.md`.
 
-## Phase: P2 Complete
+## Phase: P3 In Progress (6/7 plugins registered)
 
 ### Completed
 
@@ -27,7 +27,7 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 - `@embedpdf/plugin-interaction-manager@2.15.0` installed
 - Biome formatter configured (`biome check` + `biome format`)
 - `src/engine/use-engine.ts` — PdfiumEngine wrapper with local WASM
-- `src/config/plugins.registry.ts` — 7 plugins: document-manager → viewport → scroll → render → tiling → interaction-manager → zoom
+- `src/config/plugins.registry.ts` — 14 plugins registered (was 7 at P1, now includes P2 thumbnail + P3 search/selection/rotate/spread/pan/print)
 - `src/services/file-service.ts` — `openFile()` via Tauri dialog + fs
 - `src/stores/app-store.ts` — Zustand store with multi-document support
 - `src/App.tsx` — view switcher (home ↔ viewer)
@@ -74,13 +74,24 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 - 67 tests across 17 files
 - `bun run build` ✅ · `bun run format:check` ✅ · `cargo check` ✅
 
-### Plugin Inventory (27 packages at v2.15.0)
+#### P3 — Viewing Plugins (6/7 registered) 🔄
+
+- `@embedpdf/plugin-search@2.15.0` registered in plugins registry
+- `@embedpdf/plugin-selection@2.15.0` registered in plugins registry
+- `@embedpdf/plugin-rotate@2.15.0` registered in plugins registry
+- `@embedpdf/plugin-spread@2.15.0` registered in plugins registry
+- `@embedpdf/plugin-pan@2.15.0` registered in plugins registry
+- `@embedpdf/plugin-print@2.15.0` registered in plugins registry
+- `view-manager` — not yet registered (pending)
+- `bun run build` ✅ · `bun run format:check` ✅ · `cargo check` ✅
+
+### Plugin Inventory (27 packages at v2.15.0, 14 registered)
 
 | Phase   | Plugins                                                                       |
 | ------- | ----------------------------------------------------------------------------- |
 | P1 ✅   | document-manager, viewport, scroll, render, tiling, interaction-manager, zoom |
 | P2 ✅   | thumbnail                                                                     |
-| P3      | search, selection, rotate, spread, pan, print, view-manager                   |
+| P3 🔄   | search ✅, selection ✅, rotate ✅, spread ✅, pan ✅, print ✅, view-manager (pending) |
 | P4      | annotation, form, stamp, signature, redaction, capture, export                |
 | P5      | i18n, commands                                                                |
 | Skipped | layout-analysis (0.0.1 only)                                                  |
