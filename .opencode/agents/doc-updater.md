@@ -14,10 +14,11 @@ Run after code changes or test changes, before commit. Check all documentation f
 
 ## Audit Scope
 
-Read and verify each dir and file:
+Read and verify each dir and file. Each directory must have an `AGENTS.md` file that explains an specific aspect of the project for agents. Equivalently, each directory must have a `README.md` file that explains an specific aspect of the project for humnas. The following table lists what to check in each file. Even each dir might have another files, but hese must be referenced in the main `AGENTS.md` or `README.md` file. If any file is missing, report it. If any file is stale, report it. If any file has duplicate information, report it. If any file has invalid links, report it.
 
 | File                 | What to Check                                                                                                                 |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `docs/`              | All one-level files present, no duplicates, no stale references, all links valid                                              |
 | `docs/state/`        | Test counts match actual (`bun run test` output), phase status accurate, known issues current, file lists complete            |
 | `docs/rules/`        | File naming conventions match actual patterns in `src/`, code rules reflect real practices, mock rules match `tests/setup.ts` |
 | `docs/architecture/` | Data flows match actual implementation, component patterns accurate, state domains correct                                    |
