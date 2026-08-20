@@ -12,11 +12,22 @@ tapdf is a desktop application with three layers:
 
 The viewer composes EmbedPDF headless components into a layered structure:
 
-- Viewport wraps Scroller (virtual scrolling, page layout)
-- Scroller renders pages via renderPage callback
-- Each page composes: base render layer + high-res tiling layer + interaction layers
-- Interaction layers (selection [registered], annotation/form/redaction [planned P4]) stack on top
-- Zoom gesture wrapper enables wheel/pinch zoom at the viewport level
+```
+Viewport
+├── ZoomGestureWrapper          — wheel/pinch zoom (viewport level)
+│   └── Scroller                — virtual scrolling, page layout
+│       └── renderPage callback — per-page composition below
+│           └── PagePointerProvider — per-page pointer event context
+│               ├── RenderLayer     — base render (P1)
+│               ├── TilingLayer     — high-res tiling (P1)
+│               ├── SearchLayer     — search highlight overlays (P3)
+│               ├── SelectionLayer  — text selection marquee (P3)
+│               └── MarqueeZoom     — zoom-to-rect selection (P1)
+├── PanMode                     — pan interaction mode (P3)
+└── PrintFrame                  — print overlay (P3)
+```
+
+Each page is wrapped in `PagePointerProvider` (from interaction-manager) which provides pointer event context for all per-page interaction layers. The `renderPage` callback is memoized with `useCallback` and must not define components inline (performance rule).
 
 ## Plugin System
 
