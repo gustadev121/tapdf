@@ -63,6 +63,7 @@ PDF viewer and editor built with Tauri v2 + React 19 + EmbedPDF v2.15.0 headless
 | composition-patterns      | React composition, compound components                   |
 | accessibility             | WCAG compliance, screen reader support                   |
 | seo                       | Search engine optimization (less relevant for desktop)   |
+| tdd                       | TDD, red-green-refactor, test-first, integration tests   |
 
 ## Key Conventions
 

@@ -136,7 +136,7 @@ After completing a phase:
 ## Rules
 
 ### Testing Rule
-Every code change must include corresponding test files. No untested code commits. Tests live under `tests/` mirroring the `src/` structure (`tests/unit/` for pure logic, `tests/component/` for UI).
+Every code change must include corresponding test files. No untested code commits. Tests live under `tests/` mirroring the `src/` structure (`tests/unit/` for pure logic, `tests/component/` for UI). During implementation, agents must load the `tdd` skill (`.agents/skills/tdd/SKILL.md`) and follow the red-green-refactor cycle.
 
 ### Atomic Rule
 Extract shared UI patterns into atomic components under `src/components/ui/` when duplication reaches 3+ instances. Use shadcn/ui primitives (Button, Separator, Tooltip) before building custom markup.
