@@ -14,6 +14,10 @@ export function ThumbnailSidebar({ documentId }: ThumbnailSidebarProps) {
   const { provides: scroll } = useScroll(documentId);
   useThumbnailCapability();
 
+  const handleThumbnailClick = (pageIndex: number) => {
+    scroll?.scrollToPage({ pageNumber: pageIndex + 1 });
+  };
+
   return (
     <div className="flex h-full">
       <div
@@ -31,7 +35,7 @@ export function ThumbnailSidebar({ documentId }: ThumbnailSidebarProps) {
                   type="button"
                   className="absolute inset-x-0 cursor-pointer bg-transparent border-0 px-2"
                   style={{ top: m.top, height: m.wrapperHeight }}
-                  onClick={() => scroll?.scrollToPage({ pageNumber: m.pageIndex + 1 })}
+                  onClick={() => handleThumbnailClick(m.pageIndex)}
                 >
                   <div
                     className="mx-auto overflow-hidden rounded border border-border"

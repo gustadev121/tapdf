@@ -12,7 +12,7 @@ interface PageNavProps {
 export function PageNav({ documentId }: PageNavProps) {
   const { provides: scroll, state } = useScroll(documentId);
 
-  if (!scroll) return null;
+  if (!scroll || !state) return null;
 
   return (
     <ToolbarGroup>

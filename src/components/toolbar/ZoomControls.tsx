@@ -12,7 +12,7 @@ interface ZoomControlsProps {
 export function ZoomControls({ documentId }: ZoomControlsProps) {
   const { provides: zoom, state } = useZoom(documentId);
 
-  if (!zoom) return null;
+  if (!zoom || !state) return null;
 
   return (
     <ToolbarGroup>
