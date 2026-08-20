@@ -1,18 +1,30 @@
-import type * as React from "react";
-import { Toggle } from "@/components/ui/toggle";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
-interface IconToggleProps extends React.ComponentProps<typeof Toggle> {
+interface IconToggleProps extends React.ComponentProps<typeof Button> {
   tooltip: string;
+  onToggleChanged?: (pressed: boolean) => void;
 }
 
-function IconToggle({ tooltip, children, ...props }: IconToggleProps) {
+function IconToggle({ tooltip, children, onToggleChanged, ...props }: IconToggleProps) {
+  const [isPressed, setIsPressed] = useState(false);
+  const handleClick = () => {
+    setIsPressed(!isPressed);
+    onToggleChanged?.(!isPressed);
+  };
   return (
     <Tooltip>
-      <TooltipTrigger>
-        <Toggle size="sm" aria-label={tooltip} {...props}>
+      <TooltipTrigger asChild>
+        <Button
+          size="sm"
+          aria-label={tooltip}
+          variant={isPressed ? "secondary" : "ghost"}
+          {...props}
+          onClick={handleClick}
+        >
           {children}
-        </Toggle>
+        </Button>
       </TooltipTrigger>
       <TooltipContent>
         <p>{tooltip}</p>
