@@ -1,4 +1,5 @@
 import { createPluginRegistration } from "@embedpdf/core";
+import { Rotation } from "@embedpdf/models";
 import { DocumentManagerPluginPackage } from "@embedpdf/plugin-document-manager/react";
 import { InteractionManagerPluginPackage } from "@embedpdf/plugin-interaction-manager/react";
 import { PanPluginPackage } from "@embedpdf/plugin-pan/react";
@@ -53,13 +54,13 @@ export function buildPlugins() {
       marquee: { enabled: true },
     }),
     createPluginRegistration(RotatePluginPackage, {
-      defaultRotation: 0,
+      defaultRotation: Rotation.Degree0,
     }),
     createPluginRegistration(SpreadPluginPackage, {
       defaultSpreadMode: SpreadMode.None,
     }),
     createPluginRegistration(PanPluginPackage, {
-      defaultMode: "never",
+      defaultMode: "mobile",
     }),
     createPluginRegistration(PrintPluginPackage, {}),
   ];

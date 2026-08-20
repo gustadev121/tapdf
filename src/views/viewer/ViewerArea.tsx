@@ -1,7 +1,11 @@
-import { PagePointerProvider } from "@embedpdf/plugin-interaction-manager/react";
+import {
+  GlobalPointerProvider,
+  PagePointerProvider,
+} from "@embedpdf/plugin-interaction-manager/react";
 import { PanMode } from "@embedpdf/plugin-pan/react";
 import { PrintFrame } from "@embedpdf/plugin-print/react";
 import { RenderLayer } from "@embedpdf/plugin-render/react";
+import { Rotate } from "@embedpdf/plugin-rotate/react";
 import { type PageLayout, Scroller } from "@embedpdf/plugin-scroll/react";
 import { SearchLayer } from "@embedpdf/plugin-search/react";
 import { SelectionLayer } from "@embedpdf/plugin-selection/react";
@@ -17,24 +21,28 @@ interface ViewerAreaProps {
 export function ViewerArea({ documentId }: ViewerAreaProps) {
   const renderPage = useCallback<(pageLayout: PageLayout) => ReactNode>(
     ({ pageIndex }) => (
-      <PagePointerProvider documentId={documentId} pageIndex={pageIndex}>
-        <RenderLayer documentId={documentId} pageIndex={pageIndex} scale={1.0} />
-        <TilingLayer documentId={documentId} pageIndex={pageIndex} />
-        <SearchLayer documentId={documentId} pageIndex={pageIndex} />
-        <SelectionLayer documentId={documentId} pageIndex={pageIndex} />
-        <MarqueeZoom documentId={documentId} pageIndex={pageIndex} />
-      </PagePointerProvider>
+      <Rotate documentId={documentId} pageIndex={pageIndex}>
+        <PagePointerProvider documentId={documentId} pageIndex={pageIndex}>
+          <RenderLayer documentId={documentId} pageIndex={pageIndex} scale={1.0} />
+          <TilingLayer documentId={documentId} pageIndex={pageIndex} />
+          <SearchLayer documentId={documentId} pageIndex={pageIndex} />
+          <SelectionLayer documentId={documentId} pageIndex={pageIndex} />
+          <MarqueeZoom documentId={documentId} pageIndex={pageIndex} />
+        </PagePointerProvider>
+      </Rotate>
     ),
     [documentId],
   );
 
   return (
-    <Viewport documentId={documentId} className="h-full w-full bg-muted dark:bg-neutral-800">
-      <ZoomGestureWrapper documentId={documentId}>
-        <Scroller documentId={documentId} renderPage={renderPage} />
-      </ZoomGestureWrapper>
-      <PanMode />
-      <PrintFrame />
-    </Viewport>
+    <GlobalPointerProvider documentId={documentId}>
+      <Viewport documentId={documentId} className="h-full w-full bg-muted dark:bg-neutral-800">
+        <ZoomGestureWrapper documentId={documentId}>
+          <Scroller documentId={documentId} renderPage={renderPage} />
+        </ZoomGestureWrapper>
+        <PanMode />
+        <PrintFrame />
+      </Viewport>
+    </GlobalPointerProvider>
   );
 }
