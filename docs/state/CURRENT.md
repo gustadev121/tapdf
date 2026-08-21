@@ -8,7 +8,7 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 
 #### P0 — Scaffold ✅
 
-- 27 `@embedpdf/*` packages installed at `2.15.0`
+- 26 `@embedpdf/*` packages installed at `2.15.0`
 - `tauri-plugin-{fs,dialog,store,log,opener}` registered in Rust
 - Capabilities: `fs:default`, `fs:allow-read-file`, `fs:allow-write-file`, `fs:allow-exists`, `dialog:default`, `store:default`, `opener:default`, `log:default`
 - CSP set: `wasm-unsafe-eval` (script), `blob:` (worker)
@@ -54,7 +54,7 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 
 - Vitest 4.1 + `@vitest/browser-playwright` + `vitest-browser-react`
 - Browser mode: Chromium via Playwright, headless
-- Global mocks in `tests/setup.ts` (Tauri dialog, fs, store)
+- Global mocks in `tests/setup.ts` (Tauri dialog, fs, store, opener, path)
 - `tsconfig.vitest.json` for test TypeScript config
 
 #### P2 — File Manager + Recents ✅
@@ -81,24 +81,27 @@ This file tracks the current project state. For planned work, see `PLAN.md`.
 - `@embedpdf/plugin-rotate@2.15.0` registered in plugins registry
 - `@embedpdf/plugin-spread@2.15.0` registered in plugins registry
 - `@embedpdf/plugin-pan@2.15.0` registered in plugins registry
-- `@embedpdf/plugin-print@2.15.0` registered in plugins registry
+- `@embedpdf/plugin-print@2.15.0` registered in plugins registry (print rendered via custom `src/services/print-service.ts` — iframe-based, not PrintFrame component)
 - `view-manager` — not yet registered (pending)
 - `bun run build` ✅ · `bun run format:check` ✅ · `cargo check` ✅
 
-### Plugin Inventory (27 packages at v2.15.0, 14 registered)
+### Plugin Inventory (26 packages at v2.15.0, 14 registered)
 
 | Phase   | Plugins                                                                       |
 | ------- | ----------------------------------------------------------------------------- |
 | P1 ✅   | document-manager, viewport, scroll, render, tiling, interaction-manager, zoom |
 | P2 ✅   | thumbnail                                                                     |
-| P3 🔄   | search ✅, selection ✅, rotate ✅, spread ✅, pan ✅, print ✅, view-manager (pending) |
+| P3 🔄   | search ✅, selection ✅, rotate ✅, spread ✅, pan ✅, print ✅* , view-manager (pending) |
 | P4      | annotation, form, stamp, signature, redaction, capture, export                |
 | P5      | i18n, commands                                                                |
 | Skipped | layout-analysis (0.0.1 only)                                                  |
 
+\* Print plugin is registered but rendering uses custom `src/services/print-service.ts` (iframe-based, not EmbedPDF PrintFrame component)
+
 ### Known Issues
 
 - `plugin-layout-analysis` skipped — only at `0.0.1`
+- `@embedpdf/plugin-print` removed from `package.json` but still imported in `plugins.registry.ts` (resolves via node_modules cache)
 - WASM import uses `@embedpdf/pdfium/pdfium.wasm?url` (exports map)
 - `bun run tauri dev` not verified (needs display)
 - Large JS chunks (456KB + 689KB) — consider code splitting in P6

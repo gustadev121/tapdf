@@ -23,9 +23,10 @@ Viewport
 │               ├── SearchLayer     — search highlight overlays (P3)
 │               ├── SelectionLayer  — text selection marquee (P3)
 │               └── MarqueeZoom     — zoom-to-rect selection (P1)
-├── PanMode                     — pan interaction mode (P3)
-└── PrintFrame                  — print overlay (P3)
+└── PanMode                     — pan interaction mode (P3)
 ```
+
+Print is handled outside the viewer tree via `src/services/print-service.ts` — a custom iframe-based renderer that renders pages to a hidden iframe at correct physical dimensions, then triggers `window.print()`. This replaced the EmbedPDF `PrintFrame` component.
 
 Each page is wrapped in `PagePointerProvider` (from interaction-manager) which provides pointer event context for all per-page interaction layers. The `renderPage` callback is memoized with `useCallback` and must not define components inline (performance rule).
 
@@ -58,6 +59,9 @@ Plugin exports modified document → ArrayBuffer → service layer (native save 
 
 ### Config Change
 Settings dialog → merged config update → new key hash → EmbedPDF remount → plugins reinitialize with new config.
+
+### Print
+User clicks print → `ViewControls` calls `usePrintDocument()` → `print-service.ts` renders each page via `renderCapability.renderPage()` to blobs → creates hidden iframe with `@page` CSS for physical dimensions → appends images → triggers `window.print()` → cleans up iframe and object URLs.
 
 ## Tauri Integration
 
