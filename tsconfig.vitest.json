@@ -1,7 +1,12 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "types": ["vitest/globals", "vitest/browser"]
+    "jsx": "react-jsx",
+    "paths": {
+      "@/tests/*": ["tests/*"],
+      "@/*": ["src/*"],
+    },
+    "types": ["vitest/globals", "vitest/browser"],
   },
-  "include": ["src", "tests"]
+  "include": ["src", "tests"],
 }
