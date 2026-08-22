@@ -1,10 +1,10 @@
 import { invoke } from "@tauri-apps/api/core";
+import { listen } from "@tauri-apps/api/event";
 import { readFile } from "@tauri-apps/plugin-fs";
 import { useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { openFile } from "@/services/file-service";
 import { useAppStore } from "@/stores/app-store";
-import { DropZone } from "@/views/home/DropZone";
 import { RecentFileCard } from "@/views/home/RecentFileCard";
 
 export function HomeView() {
@@ -13,10 +13,6 @@ export function HomeView() {
   const loadRecentFiles = useAppStore((s) => s.loadRecentFiles);
   const removeRecentFile = useAppStore((s) => s.removeRecentFile);
 
-  useEffect(() => {
-    loadRecentFiles();
-  }, [loadRecentFiles]);
-
   const handleOpen = useCallback(async () => {
     const result = await openFile();
     if (result) {
@@ -24,7 +20,7 @@ export function HomeView() {
     }
   }, [openFileStore]);
 
-  const handleOpenRecent = useCallback(
+  const handleOpenByPath = useCallback(
     async (path: string) => {
       await invoke("allow_fs_path", { path });
       const bytes = await readFile(path);
@@ -34,6 +30,22 @@ export function HomeView() {
     },
     [openFileStore],
   );
+
+  useEffect(() => {
+    loadRecentFiles();
+  }, [loadRecentFiles]);
+
+  useEffect(() => {
+    const unlisten = listen<{ paths: string[] }>("tauri://drag-drop", (event) => {
+      const { paths } = event.payload;
+      if (paths.length > 0) {
+        handleOpenByPath(paths[0]);
+      }
+    });
+    return () => {
+      unlisten.then((fn) => fn());
+    };
+  }, [handleOpenByPath]);
 
   return (
     <main className="flex h-screen w-screen flex-col bg-background text-foreground">
@@ -56,17 +68,13 @@ export function HomeView() {
                 <RecentFileCard
                   key={file.path}
                   file={file}
-                  onOpen={handleOpenRecent}
+                  onOpen={handleOpenByPath}
                   onRemove={removeRecentFile}
                 />
               ))}
             </div>
           </div>
         )}
-
-        <div className="flex-1">
-          <DropZone onFileDropped={openFileStore} />
-        </div>
       </div>
     </main>
   );
