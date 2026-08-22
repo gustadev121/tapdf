@@ -1,6 +1,6 @@
+import { invoke } from "@tauri-apps/api/core";
 import { readFile } from "@tauri-apps/plugin-fs";
 import { useCallback, useEffect } from "react";
-
 import { Button } from "@/components/ui/button";
 import { openFile } from "@/services/file-service";
 import { useAppStore } from "@/stores/app-store";
@@ -26,6 +26,7 @@ export function HomeView() {
 
   const handleOpenRecent = useCallback(
     async (path: string) => {
+      await invoke("allow_fs_path", { path });
       const bytes = await readFile(path);
       const buffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength);
       const name = path.split(/[/\\]/).pop() || "document.pdf";
